@@ -1,0 +1,19 @@
+{
+  "name": "if-tagger",
+  "version": "0.0.0",
+  "description": "if-tagger =========",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Shurlow/if-tagger.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shurlow/if-tagger/issues"
+  },
+  "homepage": "https://github.com/Shurlow/if-tagger"
+}
