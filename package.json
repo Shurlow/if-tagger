@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/Shurlow/if-tagger/issues"
   },
-  "homepage": "https://github.com/Shurlow/if-tagger"
+  "homepage": "https://github.com/Shurlow/if-tagger",
+  "dependencies": {
+    "html-parser": "^0.7.2",
+    "event-stream": "^3.1.0",
+    "colors": "^0.6.2",
+    "through": "^2.3.4"
+  }
 }
