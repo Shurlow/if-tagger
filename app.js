@@ -5,33 +5,53 @@ var es = require('event-stream')
 var colors = require('colors')
 var through = require('through')
 var htmlParser = require('html-parser')
-var grab = require('./TagGrabber')
+var tagger = require('./tagger')
+var _url = require('url')
 
 
 http.get(parent_url, function(res) {
   res
     .pipe(es.split())
     .pipe(es.parse())
-    .pipe(rts)
+    .pipe(es.through(extractURLs))
+
 })
 
-
-
-
-var rts = es.through(write)
   
-function write(data) {
+function extractURLs(data) {
   
   console.log('------'.red)
   
-  var val = JSON.parse(data.value)
-  grab(val.url)
+  var newUrl = JSON.parse(data).url
+ 
+  getHTML(newUrl, function(html){
+
+  	// now that we have the html we can use the tagger module to grab all tags
+	tagger(html)
+
+  })
   
   console.log('------\n'.cyan)
 }
 
 
+function getHTML(url, cb) {
 
+	// temporary check for https.
+	if (_url.parse(url).protocol == 'https:') return false;
+
+	http.get(url, function(res) {
+		res.on('data', function(data) {
+
+			cb(data.toString())
+
+		})
+
+	}).on('error', function(err) {
+		console.log('http error' + err)
+	})
+
+}
 
 // var http = require('http')
 // var htmlParser = require('html-parser')
